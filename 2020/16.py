@@ -80,9 +80,6 @@ for i in range(len(valid_tickets[0])):
         if all_field_valid:
             valid_fields[i].add(rule_name)
 
-       
-            
-
 assert len(valid_fields) == len(valid_tickets[0])
 
 changed = True
@@ -97,8 +94,5 @@ while changed:
 
 assert sum([len(f) for f in valid_fields]) == len(valid_fields)
 
-ticket_fields = [tuple(f)[0] for f in valid_fields]
-print(ticket_fields)
 ticket_field_multiply = [your_ticket[i] if tuple(f)[0].startswith('departure') else 1 for i, f in enumerate(valid_fields)]
-print(ticket_field_multiply)
 print(math.prod(ticket_field_multiply))

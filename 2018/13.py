@@ -43,7 +43,7 @@ class Cart:
         return  str(self.pos) + next((a for a in Cart.steps if Cart.steps[a] == self.step))
 
 if __name__ == "__main__":
-    grid = list(map(list, open('input-2018.txt').read().split('\n')))
+    grid = list(map(list, open('input-13.txt').read().split('\n')))
 
     for i, row in enumerate(grid):  # find and create carts
         for j, tile in enumerate(row):
