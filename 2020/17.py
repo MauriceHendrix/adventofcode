@@ -36,7 +36,6 @@ def simulate(dimensions=3, simulation_runs = 6):
     return len(cubes)
 
 if __name__ == "__main__":
-    #print(simulate())
-    #print(simulate(dimensions=4))
-    print(simulate(dimensions=6))
+    print(simulate())
+    print(simulate(dimensions=4))
 
