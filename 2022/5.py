@@ -49,10 +49,8 @@ for line in input:
         break
 
 def move_pt2(num, frm, to):
-    items = []
-    for _ in range(num):
-        items.append(stacks[frm-1].pop(0))
-    stacks[to-1] = items + stacks[to-1]
+    stacks[to-1] = stacks[frm-1][:num] + stacks[to-1]
+    del stacks[frm-1][:num]
 
 for line in input:
     if not line.startswith('move'):
