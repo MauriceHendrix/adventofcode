@@ -34,8 +34,10 @@ for line in input:
     elif line[0].isnumeric():
         size, name = line.split(' ')
         all_folders[current_folder].files.append(File(int(size), name))
-#    print([line, current_folder])
 
-#print(all_folders)
 print(sum(folder.total_size() for folder in all_folders.values() if folder.total_size() <= 100000))
-#print(all_folders['|/|a'])
+
+free_space = 70000000 - all_folders['|/'].total_size()
+required_space = 30000000 - free_space
+#print(required_space)
+print(min(folder.total_size() for folder in all_folders.values() if folder.total_size() >= required_space))
