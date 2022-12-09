@@ -1,5 +1,3 @@
-from dataclasses import dataclass
-from typing import List
 input = open('8.txt').readlines()
 
 grid = []
