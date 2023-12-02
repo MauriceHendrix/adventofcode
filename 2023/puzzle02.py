@@ -32,11 +32,22 @@ def part1(puzzle_input: list[str], restrictions):
     return(count)
 
 
-def part2(puzzle_input: list[str]):
-    return 'todo'
+def part2(puzzle_input: list[str], restrictions):
+    count = 0
+    power_sum = 0
+    for game in puzzle_input:
+        allowed = True
+        game_num, game_num_str = get_game_num(game)
+        game = game.replace(game_num_str, "")
+        power = 1
+        for col in colours:
+            set_colour(game_num , game, col)
+            power = power * max(games[game_num][col])
+        power_sum += power
+    return(power_sum)
 
 
 if __name__ == "__main__":
     puzzle_input = open("input/02.txt").readlines()
     print(part1(puzzle_input, {'red': 12, 'green': 13, 'blue': 14}))
-#    print(part2(puzzle_input))
+    print(part2(puzzle_input, {'red': 12, 'green': 13, 'blue': 14}))
