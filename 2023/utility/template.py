@@ -1,4 +1,4 @@
-from timing import timing
+from utility.timing import timing
 
 
 @timing
