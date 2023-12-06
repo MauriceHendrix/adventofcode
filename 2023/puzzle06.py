@@ -6,7 +6,8 @@ def part1(times, distances):
     for time, reccord in zip(times, distances):
         count_win_options = 0
         for i in range(1, time):
-            if i*(time-i) > reccord:
+            travelled = i*(time-i)
+            if travelled > reccord:
                 count_win_options += 1
         totals *= count_win_options
         count_win_options = 0
