@@ -1,9 +1,6 @@
 import re
 from utility.timing import timing
 
-def is_symbol(char):
-    return not char.isdigit() and char != '.' # and char != '\n'
-
 def part1(puzzle_input: list[str]):
     total_score = 0
     for card in puzzle_input:
