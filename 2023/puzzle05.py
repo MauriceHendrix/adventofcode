@@ -2,7 +2,6 @@ import portion
 import sys
 from operator import itemgetter
 from collections import deque
-from utility.timing import timing
 
 class RangeMap:
     def __init__(self):
