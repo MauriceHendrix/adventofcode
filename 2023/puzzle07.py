@@ -13,9 +13,6 @@ card_rank = {'A': '14',
              '2': '02',
              'J': '01' }
              
-#def of_a_kind(card, matches):
-    #return any(len(card.replace(card[i], '')) == len(card) - matches for i in range(len(card)))
-
 def of_a_kind(card, matches):
     return any(len(card.replace(card[i], '')) == len(card) - matches for i in range(len(card)))
 
