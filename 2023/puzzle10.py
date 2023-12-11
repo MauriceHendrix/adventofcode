@@ -51,14 +51,18 @@ if __name__ == "__main__":
                 case '-':#is a horizontal pipe connecting east and west.
                     connect_east(i,j)
                     connect_west(i,j)
-                case 'L':
-                    pass # is a 90-degree bend connecting north and east.
-                case 'J':
-                    pass # is a 90-degree bend connecting north and west.
-                case '7':
-                    pass # is a 90-degree bend connecting south and west.
-                case 'F':
-                    pass # is a 90-degree bend connecting south and east.
+                case 'L': # is a 90-degree bend connecting north and east.
+                    connect_north(i,j)
+                    connect_east(i,j)
+                case 'J': # is a 90-degree bend connecting north and west.
+                    connect_north(i,j)
+                    connect_west(i,j)
+                case '7': # is a 90-degree bend connecting south and west.
+                    connect_south(i,j)
+                    connect_west(i,j)
+                case 'F': # is a 90-degree bend connecting south and east.
+                    connect_south(i,j)
+                    connect_east(i,j)
                 case 'S':
                     start = (i, j)
                 #. is ground; there is no pipe in this tile.
