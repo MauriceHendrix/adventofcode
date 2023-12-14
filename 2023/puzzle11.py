@@ -16,6 +16,7 @@ if __name__ == "__main__":
     puzzle_input = list(map(list, open("input/11.txt").read().splitlines()))
     galaxy_map = []
     galaxy_pos = []
+    galaxy_pos2 = []
     
     i=0
     while i< len(puzzle_input):
@@ -31,5 +32,25 @@ if __name__ == "__main__":
     for i, ln in enumerate(galaxy_map):
         for j, g in enumerate(ln):
             if g == '#':
-                galaxy_pos.append((i,j))            
+                galaxy_pos.append((i,j))
     print(part1(galaxy_map, galaxy_pos))
+
+    i=0
+    i2=0
+    while i< len(puzzle_input):
+        if all([g=='.'for g in puzzle_input[i]]):
+            j2+=1
+        j=0
+        j2=0
+        while j < len(puzzle_input[i]):
+            if all([puzzle_input[k][j]=='.' for k in range(len(puzzle_input))]):
+                j2+=1
+            if(puzzle_input[i][j]=='#'):
+                galaxy_pos2.append((i+1,j+1))
+            j+=1
+            j2+=1
+        i+=1
+        i2+=1
+
+    print(galaxy_pos)
+    print(galaxy_pos2)
