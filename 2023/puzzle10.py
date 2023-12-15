@@ -1,5 +1,3 @@
-from collections import defaultdict
-
 class Node:
     def __init__(self, tile, i, j):
         self.tile, self.i, self.j, self.connected_to, self.enclosed = tile, i, j, [], True
@@ -38,7 +36,7 @@ def get_neighbours(node, puzzle_input, pathlengths):
 
 
 def find_cycle_pathlengths(start):
-    pathlengths = defaultdict ()
+    pathlengths = {}
 
     for connected in start.connected_to:
         visited = set()
