@@ -1,56 +1,31 @@
 import itertools
 
-def shortest_path(galaxy_map, pair):
+def shortest_path(pair):
     return abs(pair[0][0] - pair[1][0]) + abs(pair[0][1] - pair[1][1])
 
-def part1(galaxy_map, galaxy_pos):
+def calc_sum_galgxypaths(puzzle_input, times):
+    galaxy_pos = []
+    
+    i2=0
+    for i, line in enumerate(puzzle_input):
+        if('#' in str(line)):
+            j2 = 0
+            for j, g in enumerate(line):
+                if(g=='#'):
+                    galaxy_pos.append((i2,j2))
+                if all([puzzle_input[k][j]=='.' for k in range(len(puzzle_input))]):
+                    j2+=(times-1)
+                j2+=1
+        else:
+            i2+=(times-1)
+        i2 += 1
+
     total_sum = 0
     for pair in itertools.combinations(galaxy_pos, 2):
-        total_sum += shortest_path(galaxy_map, pair)
+        total_sum += shortest_path(pair)
     return total_sum
-
-def part2(galaxy_map):
-    return ''
 
 if __name__ == "__main__":
     puzzle_input = list(map(list, open("input/11.txt").read().splitlines()))
-    galaxy_map = []
-    galaxy_pos = []
-    galaxy_pos2 = []
-    
-    i=0
-    while i< len(puzzle_input):
-        for _ in range(2 if all([g=='.'for g in puzzle_input[i]]) else 1):
-            j = 0
-            new_line = []
-            while j < len(puzzle_input):
-                for _ in range(2 if all([puzzle_input[k][j]=='.' for k in range(len(puzzle_input))]) else 1):
-                    new_line.append(puzzle_input[i][j])
-                j+=1
-            galaxy_map.append(new_line)
-        i+=1
-    for i, ln in enumerate(galaxy_map):
-        for j, g in enumerate(ln):
-            if g == '#':
-                galaxy_pos.append((i,j))
-    print(part1(galaxy_map, galaxy_pos))
-
-    i=0
-    i2=0
-    while i< len(puzzle_input):
-        if all([g=='.'for g in puzzle_input[i]]):
-            j2+=1
-        j=0
-        j2=0
-        while j < len(puzzle_input[i]):
-            if all([puzzle_input[k][j]=='.' for k in range(len(puzzle_input))]):
-                j2+=1
-            if(puzzle_input[i][j]=='#'):
-                galaxy_pos2.append((i+1,j+1))
-            j+=1
-            j2+=1
-        i+=1
-        i2+=1
-
-    print(galaxy_pos)
-    print(galaxy_pos2)
+    print(calc_sum_galgxypaths(puzzle_input, 2))
+    print(calc_sum_galgxypaths(puzzle_input, 1000000))
