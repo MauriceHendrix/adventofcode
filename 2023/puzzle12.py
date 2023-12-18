@@ -19,15 +19,6 @@ def get_combos(spring, conti):
                     combos.append(cmb[:i] + char + cmb[i+1:])
     return filter(lambda c: matches(c,conti), combos)
     
-def get_combos2(spring, conti):
-    expected_hashes = sum(conti)
-    combos = []
-    for cmb in product('.#', repeat=len(spring)):
-        cmb = "".join(cmb)
-        if(tuple(map(len, re.findall('#+', cmb))) == conti):
-            combos.append(cmb)
-    return combos
-
 def find_combos(spring, conti):
     combos = []
     for i, p in enumerate(get_combos(spring, conti)):
@@ -76,15 +67,9 @@ if __name__ == "__main__":
 
     print(part1(springs, contiguous))
 
-
-    
     for i, spring in enumerate(springs):
         springs[i] = (spring+'?')*5
         springs[i] = springs[i][:-1]
 
     for i in range(len(contiguous)):
         contiguous[i]*= 5
-
-#    print(part1(springs, contiguous))
-#    print(len(list(get_combos(springs[1], contiguous[1]))))
-    print(len(list(get_combos2(springs[1], contiguous[1]))))
