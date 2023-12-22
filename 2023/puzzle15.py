@@ -1,13 +1,11 @@
-stored_hashes = {}
+import re
+
 def hash_func(chars):
-    if chars in stored_hashes:
-        return stored_hashes[chars]
     curr = 0
     for char in chars:
         curr += ord(char)
         curr *= 17
         curr = curr % 256
-    stored_hashes[chars] = curr
     return curr
     
 def part1(lst_seq):
@@ -28,16 +26,14 @@ def print_boxes():
             
 def part2(lst_seq):
     for seq in lst_seq:
-        if('-' in seq):
-            chars = seq[:-1]
-            box_num = hash_func(chars)
+        chars, lens = re.split('-|=', seq)
+        box_num = hash_func(chars)
+        if(lens == ''):
             if chars in box_labels[box_num]:
                 idx_to_remove = box_labels[box_num].index(chars)
                 box_labels[box_num].pop(idx_to_remove)
                 box_numbers[box_num].pop(idx_to_remove)
         else: # '='
-            chars, lens = seq.split('=')
-            box_num = hash_func(chars)
             if chars in box_labels[box_num]:
                 box_numbers[box_num][box_labels[box_num].index(chars)] = int(lens)
             else:
