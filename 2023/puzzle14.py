@@ -14,21 +14,6 @@ def tilt(platform, ew_range, ns_range, i_j_func, move_func):
                 platform[i_j_func(i,j)[0]][i_j_func(i,j)[1]]='.'
                 available_spots.insert(0, j)
     return platform
-    
-def tilt_east(platform):
-    for i in range(len(platform)):
-        available_spots = []
-        for j in range(len(platform[i])):
-            if(platform[i][j]=='.'):
-                available_spots.insert(0, j)
-            elif(platform[i][j]=='#'):
-                available_spots = []
-            elif(len(available_spots) != 0):
-                move_to = available_spots.pop()
-                platform[i][move_to]='O'
-                platform[i][j]='.'
-                available_spots.insert(0, j)
-    return platform
 
 def cycle(platform):
     platform = tilt(platform, range(len(platform[0])), range(len(platform)), lambda i,j: (j, i), lambda i,j,m: (m, i))  # tilt north
@@ -57,7 +42,7 @@ def part2(cycles):
     while i<= cycles:
         playform_key = str(platform)
         if playform_key in maps:
-            platform = copy.deepcopy(maps[playform_key])
+            platform = maps[playform_key]
         else:
             platform = cycle(platform)
             maps[playform_key] = copy.deepcopy(platform)
@@ -70,11 +55,9 @@ def part2(cycles):
             rest = cycles-i
             full_cycles = rest // cycle_length
             i += (full_cycles * cycle_length)
-            prev_index = {}
         i+=1
     return sum((platform[i].count('O') * (len(platform)-i)  for i in range(len(platform))))
 
 if __name__ == "__main__":
     print(part1())
-    print()
-    print(part2(1000000000))
+    PRINT(part2(1000000000))
