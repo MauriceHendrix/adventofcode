@@ -60,4 +60,4 @@ def part2(cycles):
 
 if __name__ == "__main__":
     print(part1())
-    PRINT(part2(1000000000))
+    print(part2(1000000000))
